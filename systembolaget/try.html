@@ -7,18 +7,15 @@
 </head>
 
 <body>
-<div ng-app="myApp" ng-controller="getSortiment">
+<div ng-app="myApp" ng-controller="sortCtrl">
 
 <table>
-<tbody>
-<tr ng-repeat="x in sortiments">
+<tr data-ng-repeat="x in sortiments">
     <td>{{x.Namn}}</td>
     <td>{{x.Namn2}}</td>
     <td>{{x.nr}}</td>
     <td>{{x.Forpackning}}</td>
     </tr>
-</tbody>
-</tfoot></tfoot>
 </table>
 
 </div>
