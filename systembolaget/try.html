@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<title>PHP MySQL API Consumed with AngularJS</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<script src="data.js"></script>
+</head>
+
+<body>
+<div ng-app="myApp" ng-controller="getSortiment">
+
+<table>
+<tbody>
+<tr ng-repeat="x in sortiments">
+    <td>{{x.Namn}}</td>
+    <td>{{x.Namn2}}</td>
+    <td>{{x.nr}}</td>
+    <td>{{x.Forpackning}}</td>
+    </tr>
+</tbody>
+</tfoot></tfoot>
+</table>
+
+</div>
+</body>
+</html>

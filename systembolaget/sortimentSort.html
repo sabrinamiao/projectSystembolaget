@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.24/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.0.0/ui-bootstrap.min.js"></script>
+<script src="app.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="productSort">
+<div class="row">
+<div class="col-md-12" ng-show="filteredItems > 0">
+<table class="table table-striped table-bordered">
+<thead>
+<th>Namn&nbsp;<a ng-click="sort_by('Namn');"><i class="glyphicon glyphicon-sort"></i></a></th>
+<th>Namn2&nbsp;<a ng-click="sort_by('Namn2');"><i class="glyphicon glyphicon-sort"></i></a></th>
+<th>Number&nbsp;<a ng-click="sort_by('nr');"><i class="glyphicon glyphicon-sort"></i></a></th>
+<th>Pris inkl. moms&nbsp;<a ng-click="sort_by('Prisinklmoms');"><i class="glyphicon glyphicon-sort"></i></a></th>
+<th>Pris Per Liter&nbsp;<a ng-click="sort_by('PrisPerLiter');"><i class="glyphicon glyphicon-sort"></i></a></th>
+<th>Producent&nbsp;<a ng-click="sort_by('Producent');"><i class="glyphicon glyphicon-sort"></i></a></th>
+<th>Forpackning&nbsp;<a ng-click="sort_by('Forpackning');"><i class="glyphicon glyphicon-sort"></i></a></th>
+<th>Ekologisk&nbsp;<a ng-click="sort_by('Ekologisk');"><i class="glyphicon glyphicon-sort"></i></a></th>
+<th>Ursprung&nbsp;<a ng-click="sort_by('Ursprung');"><i class="glyphicon glyphicon-sort"></i></a></th>
+<th>Ursprunglandnamn&nbsp;<a ng-click="sort_by('Ursprunglandnamn');"><i class="glyphicon glyphicon-sort"></i></a></th>
+<th>Varnummer&nbsp;<a ng-click="sort_by('Varnummer');"><i class="glyphicon glyphicon-sort"></i></a></th>
+<th>Varugrupp&nbsp;<a ng-click="sort_by('Varugrupp');"><i class="glyphicon glyphicon-sort"></i></a></th>
+<th>Volym&nbsp;<a ng-click="sort_by('Volymiml');"><i class="glyphicon glyphicon-sort"></i></a></th>
+</thead>
+<tbody>
+<tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+<td>{{data.Namn}}</td>
+<td>{{data.Namn2}}</td>
+<td>{{data.nr}}</td>
+<td>{{data.Prisinklmoms}}</td>
+<td>{{data.PrisPerLiter}}</td>
+<td>{{data.Producent}}</td>
+<td>{{data.Forpackning}}</td>
+<td>{{data.Ekologisk}}</td>
+<td>{{data.Ursprung}}</td>
+<td>{{data.Ursprunglandnamn}}</td>
+<td>{{data.Varnummer}}</td>
+<td>{{data.Varugrupp}}</td>
+<td>{{data.Volymiml}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>
