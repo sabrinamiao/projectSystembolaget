@@ -17,14 +17,17 @@ $result = $conn->query($sql);
 
 $output = "";
 while($rs = $result->fetch_array(MYSQLI_ASSOC)){
-    if($output != ""){$output .= ",";}
-        $output .= '{"Namn":"' . $rs["Namn"] . '",';
-        $output .= '"Namn2":"' . $rs["Namn2"] . '",';
-        $output .= '"nr":"' . $rs["nr"] . '",';
-        $output .= '"Forpackning":"' . $rs["Forpackning"] . '",';
+    if($output != ""){
+        $output .= ",";
     }
+    $output .= '{"Namn":"' . $rs["Namn"] . '",';
+    $output .= '"Namn2":"' . $rs["Namn2"] . '",';
+    $output .= '"nr":"' . $rs["nr"] . '",';
+    $output .= '"Forpackning":"' . $rs["Forpackning"] . '"}';
+}
+
 $output = '{"records":['.$output.']}';
 $conn->close();
 
-echo($output);
+print($output);
 ?>
