@@ -1,49 +1,89 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="sv" ng-app="myApp">
+
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.24/angular.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.0.0/ui-bootstrap.min.js"></script>
-<script src="app.js"></script>
+    <title>Sortiment Filtering</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
 </head>
-<body ng-app="myApp" ng-controller="productSort">
-<div class="row">
-<div class="col-md-12" ng-show="filteredItems > 0">
-<table class="table table-striped table-bordered">
-<thead>
-<th>Namn&nbsp;<a ng-click="sort_by('Namn');"><i class="glyphicon glyphicon-sort"></i></a></th>
-<th>Namn2&nbsp;<a ng-click="sort_by('Namn2');"><i class="glyphicon glyphicon-sort"></i></a></th>
-<th>Number&nbsp;<a ng-click="sort_by('nr');"><i class="glyphicon glyphicon-sort"></i></a></th>
-<th>Pris inkl. moms&nbsp;<a ng-click="sort_by('Prisinklmoms');"><i class="glyphicon glyphicon-sort"></i></a></th>
-<th>Pris Per Liter&nbsp;<a ng-click="sort_by('PrisPerLiter');"><i class="glyphicon glyphicon-sort"></i></a></th>
-<th>Producent&nbsp;<a ng-click="sort_by('Producent');"><i class="glyphicon glyphicon-sort"></i></a></th>
-<th>Forpackning&nbsp;<a ng-click="sort_by('Forpackning');"><i class="glyphicon glyphicon-sort"></i></a></th>
-<th>Ekologisk&nbsp;<a ng-click="sort_by('Ekologisk');"><i class="glyphicon glyphicon-sort"></i></a></th>
-<th>Ursprung&nbsp;<a ng-click="sort_by('Ursprung');"><i class="glyphicon glyphicon-sort"></i></a></th>
-<th>Ursprunglandnamn&nbsp;<a ng-click="sort_by('Ursprunglandnamn');"><i class="glyphicon glyphicon-sort"></i></a></th>
-<th>Varnummer&nbsp;<a ng-click="sort_by('Varnummer');"><i class="glyphicon glyphicon-sort"></i></a></th>
-<th>Varugrupp&nbsp;<a ng-click="sort_by('Varugrupp');"><i class="glyphicon glyphicon-sort"></i></a></th>
-<th>Volym&nbsp;<a ng-click="sort_by('Volymiml');"><i class="glyphicon glyphicon-sort"></i></a></th>
-</thead>
-<tbody>
-<tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
-<td>{{data.Namn}}</td>
-<td>{{data.Namn2}}</td>
-<td>{{data.nr}}</td>
-<td>{{data.Prisinklmoms}}</td>
-<td>{{data.PrisPerLiter}}</td>
-<td>{{data.Producent}}</td>
-<td>{{data.Forpackning}}</td>
-<td>{{data.Ekologisk}}</td>
-<td>{{data.Ursprung}}</td>
-<td>{{data.Ursprunglandnamn}}</td>
-<td>{{data.Varnummer}}</td>
-<td>{{data.Varugrupp}}</td>
-<td>{{data.Volymiml}}</td>
-</tr>
-</tbody>
-</table>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<body ng-controller="sortController">
+
+    <section id="filters" ng-click = "invisible = !invisible">
+        <h2>Filters</h2>
+
+        <fieldset>
+            Groups:
+            <select ng-model="search.Varugrupp">
+                <option value="">All</option>
+                <option value="R?tt Vin">Red Wine</option>
+                <option value="Vitt Vin">White Wine</option>
+                <option value="?l">Beer</option>
+                <option value="Whisky">Whisky</option>
+                <option value="Alkoholfri">Alcohol Free</option>
+            </select>
+
+            <br>
+            <br> Country:
+            
+            <br>
+            <input type="checkbox" ng-model='search.Frankrike' ng-true-value="'Frankrike'" ng-false-value=""/>France
+            {{Frankrike}}
+            <br>
+            <input type="checkbox" ng-model='search.Italien' ng-true-value="'Italien'" ng-false-value="" />Italy
+            <br>
+            <input type="checkbox" ng-model="search.Sverige" ng-true-value="'Sverige'" ng-false-value="" />Sweden
+            <br>
+            <input type="checkbox" ng-model="search.Storbritannien" ng-true-value="'Storbritannien'" ng-false-value="" />The Great Britain
+            <br>
+            <input type="checkbox" ng-model="search.Spanien" ng-true-value="'Spanien'" ng-false-value="" />Spain
+            <br>
+
+            <br>
+            <br> Price:
+
+            <br>
+            <input type="checkbox" ng-model="search.Pris" ng-true-value="<= 95" ng-false-value="" />0-95
+            <br>
+            <input type="checkbox" ng-model="search.Pris" ng-true-value=">95 && <= 180" ng-false-value="" />96-180
+            <br>
+            <input type="checkbox" ng-model="search.Pris" ng-true-value=">180 && <= 370" ng-false-value="" />181-370
+            <br>
+            <input type="checkbox" ng-model="search.Pris" ng-true-value="> 370" ng-false-value="" />370 -
+            <br>
+
+            <br>
+            <br> Package:
+
+            <br>
+            <input type="checkbox" ng-model="search.Forpackning" ng-true-value="Helflaska" ng-false-value="" />Whole Bottle
+            <br>
+            <input type="checkbox" ng-model="search.Forpackning" ng-true-value="Flaska" ng-false-value="" />Bottle
+            <br>
+            <input type="checkbox" ng-model="search.Forpackning" ng-true-value="Halvflaska" ng-false-value="" />Half Bottle
+            <br>
+        </fieldset>
+    </section>
+
+    <section id="sortiment">
+        <article ng-repeat="x in sortiments | filter: search.Frankrike | filter: search.Italien| filter: search.Sverige | filter: search.Storbritannien | filter: search.Spanien " class="result">
+            <ul class="result-features">
+                <li>Name: {{x.Namn}}</li>
+                <li>Original Country: {{x.Landet}}</li>
+                <li>Group: {{x.Varugrupp}}</li>
+                <li>Package: {{x.Forpackning}}</li>
+                <li>Alcohol(%): {{x.Alkoholhalt}}</li>
+                <li>Price: {{x.Pris}} SEK</li>
+            </ul>
+            
+            
+        </article>
+
+        <p ng-show="(sortiments | filter: search).length ==0"> There are no results for this search</p>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="../js/app.js"></script>
 </body>
+
 </html>
