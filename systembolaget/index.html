@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="sv" ng-app="myApp">
+
+<head>
+    <title>Sortiment Filtering</title>
+</head>
+
+<body ng-controller="sortController as ctrl">
+    <div id="search-container">
+        <div><strong>Searching</strong>:</div>
+        <div>
+            <section>
+                <p>Pris:</p>
+                <p>
+                    <input type="checkbox" 
+                           ng-model='ctrl.searchMatrix.pris.a' 
+                           ng-true-value='true' 
+                           ng-false-value='false'>0-120&nbsp;&nbsp;
+                    
+                    <input type="checkbox" 
+                           ng-model='ctrl.searchMatrix.pris.b' 
+                           ng-true-value='true' 
+                           ng-false-value='false'>121-185&nbsp;&nbsp;
+                    
+                    <input type="checkbox" 
+                           ng-model='ctrl.searchMatrix.pris.c' 
+                           ng-true-value='true' 
+                           ng-false-value='false'>186-310&nbsp;&nbsp;
+                    
+                    <input type="checkbox" 
+                           ng-model='ctrl.searchMatrix.pris.d' 
+                           ng-true-value='true' 
+                           ng-false-value='false'>311+
+                </p>
+            </section>
+                
+            <section>
+                <p>Varugrupp:</p>
+                <p>
+                    <input type="checkbox"
+                           ng-model='ctrl.searchMatrix.varugrupp.redwine'
+                           ng-true-value='true'
+                           ng-false-value='false'>R&ouml;tt Vin&nbsp;&nbsp;
+                           
+                    <input type="checkbox"
+                           ng-model='ctrl.searchMatrix.varugrupp.whitewine'
+                           ng-true-value='true'
+                           ng-false-value='false'>Vitt Vin&nbsp;&nbsp;
+                    <input type="checkbox"
+                           ng-model='ctrl.searchMatrix.varugrupp.mousserandevin'
+                           ng-true-value='true'
+                           ng-false-value='false'>Mousserande vin
+                    <input type="checkbox"
+                           ng-model='ctrl.searchMatrix.varugrupp.beer'
+                           ng-true-value='true'
+                           ng-false-value='false'>&Ouml;l&nbsp;&nbsp;
+                    <input type="checkbox"
+                           ng-model='ctrl.searchMatrix.varugrupp.whisky'
+                           ng-true-value='true'
+                           ng-false-value='false'>Whisky&nbsp;&nbsp;
+                </p>
+            </section>
+            
+            <section>
+                <p>Forpackning:</p>
+                <input type="checkbox" 
+                           ng-model='ctrl.searchMatrix.forpackning.full' 
+                           ng-true-value='true' 
+                           ng-false-value='false'>Flaska
+                <input type="checkbox" 
+                           ng-model='ctrl.searchMatrix.forpackning.half' 
+                           ng-true-value='true' 
+                           ng-false-value='false'>Halvflaska
+                <input type="checkbox" 
+                           ng-model='ctrl.searchMatrix.forpackning.box' 
+                           ng-true-value='true' 
+                           ng-false-value='false'>Burk
+                <input type="checkbox" 
+                           ng-model='ctrl.searchMatrix.forpackning.big' 
+                           ng-true-value='true' 
+                           ng-false-value='false'>Helflaska
+                <input type="checkbox" 
+                           ng-model='ctrl.searchMatrix.forpackning.pet' 
+                           ng-true-value='true' 
+                           ng-false-value='false'>PET
+            </section>
+            
+            <section>
+                <p>Alkoholhalt:</p>
+                <p>Jag vill hitta drycker inom intervallet </p>
+                Fr&aring;n 
+                      <input type="number"
+                       ng-model='ctrl.searchMatrix.alkoholhalt.low'
+                       >till
+                <input type="number"
+                       ng-model='ctrl.searchMatrix.alkohohalt.top'
+                       > volymprocent 
+            </section>
+            {{}}
+            <section>
+                <p>Landet:</p>
+            <input type="checkbox"
+                   ng-model='ctrl.searchMatrix.landet.argentina'
+                   ng-true-value='true'
+                   ng-false-value='false'>Argentina
+            <input type="checkbox"
+                   ng-model='ctrl.searchMatrix.landet.austrilian'
+                   ng-true-value='true'
+                   ng-false-value='false'>Australien
+            <input type="checkbox"
+                   ng-model='ctrl.searchMatrix.landet.brasilien'
+                   ng-true-value='true'
+                   ng-false-value='false'>Brasilien
+            <input type="checkbox"
+                   ng-model='ctrl.searchMatrix.landet.chile'
+                   ng-true-value='true'
+                   ng-false-value='false'>Chile
+            <input type="checkbox"
+                   ng-model='ctrl.searchMatrix.landet.frankrike'
+                   ng-true-value='true'
+                   ng-false-value='false'>Frankrike
+            <input type="checkbox"
+                   ng-model='ctrl.searchMatrix.landet.italien'
+                   ng-true-value='true'
+                   ng-false-value='false'>Italien
+            <input type="checkbox"
+                   ng-model='ctrl.searchMatrix.landet.kanada'
+                   ng-true-value='true'
+                   ng-false-value='false'>Kanada
+            <input type="checkbox"
+                   ng-model='ctrl.searchMatrix.landet.ryssland'
+                   ng-true-value='true'
+                   ng-false-value='false'>Ryssland
+            <input type="checkbox"
+                   ng-model='ctrl.searchMatrix.landet.spanien'
+                   ng-true-value='true'
+                   ng-false-value='false'>Spanien
+            <input type="checkbox"
+                   ng-model='ctrl.searchMatrix.landet.usa'
+                   ng-true-value='true'
+                   ng-false-value='false'>USA
+            <input type="checkbox"
+                   ng-model='ctrl.searchMatrix.landet.tyskland'
+                   ng-true-value='true'
+                   ng-false-value='false'>Tyskland
+            <input type="checkbox"
+                   ng-model='ctrl.searchMatrix.landet.sydafrika'
+                   ng-true-value='true'
+                   ng-false-value='false'>Sydafrika
+            <input type="checkbox"
+                   ng-model='ctrl.searchMatrix.landet.mexiko'
+                   ng-true-value='true'
+                   ng-false-value='false'>Mexiko
+            <input type="checkbox"
+                   ng-model='ctrl.searchMatrix.landet.nya_zeeland'
+                   ng-true-value='true'
+                   ng-false-value='false'>Nya Zeeland
+            <input type="checkbox"
+                   ng-model='ctr.searchMatrix.landet.portugal'
+                   ng-true-value='true'
+                   ng-false-value='false'>Portugal
+            <input type="checkbox"
+                   ng-model='ctrl.searchMatrix.landet.sverige'
+                   ng-true-value='true'
+                   ng-false-value='false'>Sverige
+            </section>
+
+        </div>
+    </div>
+    <hr>
+    <div ng-repeat="item in ctrl.sortiments | filter:ctrl.search">
+        {{item}}
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
